@@ -2,25 +2,18 @@
 
 namespace DevHammed\ReactingToPhp;
 
-use Closure;
 use React\Http\HttpServer;
 use React\Socket\SocketServer;
 
 class AppServer
 {
-    protected Closure $callback;
-
     protected HttpServer $httpServer;
 
     protected SocketServer $socketServer;
 
-    public function __construct(
-        protected string $bindAddress,
-        Closure | array $callback,
-    ) {
-        $this->callback = Closure::fromCallable($callback);
-
-        $this->httpServer = new HttpServer($this->callback);
+    public function __construct(protected string $bindAddress, ...$handlers)
+    {
+        $this->httpServer = new HttpServer(...$handlers);
 
         $this->socketServer = new SocketServer($this->bindAddress);
     }
