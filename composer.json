@@ -1,0 +1,27 @@
+{
+  "name": "devhammed/reacting-to-php",
+  "description": "Dabbling with ReactPHP",
+  "type": "project",
+  "require": {
+    "react/http": "1.x-dev",
+    "react/socket": "1.x-dev"
+  },
+  "license": "MIT",
+  "autoload": {
+    "psr-4": {
+      "Devhammed\\ReactingToPhp\\": "src/"
+    }
+  },
+  "authors": [
+    {
+      "name": "Hammed Oyedele",
+      "email": "itz.harmid@gmail.com"
+    }
+  ],
+  "scripts": {
+    "start": [
+      "php public/index.php"
+    ]
+  },
+  "minimum-stability": "dev"
+}
