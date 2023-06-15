@@ -18,7 +18,7 @@ class AppServer
         $this->socketServer = new SocketServer($this->bindAddress);
     }
 
-    public function listen(): void
+    public function start(): void
     {
         $this->httpServer->listen($this->socketServer);
 

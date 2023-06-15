@@ -6,10 +6,8 @@ use React\Http\Message\Response;
 use Devhammed\ReactingToPhp\AppServer;
 use Psr\Http\Message\ServerRequestInterface;
 
-$bindAddress = '127.0.0.1:8080';
-
 $appServer = new AppServer(
-    $bindAddress,
+    '127.0.0.1:8080',
     function (ServerRequestInterface $request, callable $next) {
         echo 'Middleware 1' . PHP_EOL;
 
@@ -22,7 +20,7 @@ $appServer = new AppServer(
 
         echo 'Middleware 2 After' . PHP_EOL;
 
-        return $response;
+        return $response->withHeader('X-Powered-By', 'Hammed');
     },
     function (ServerRequestInterface $request) {
         echo '[Handler] Request URL: ' . $request->getUri() . PHP_EOL;
@@ -32,7 +30,7 @@ $appServer = new AppServer(
         return Response::plaintext(
             "Hello World!\n"
         );
-    }
+    },
 );
 
-$appServer->listen();
+$appServer->start();
